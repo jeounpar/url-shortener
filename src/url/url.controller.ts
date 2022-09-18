@@ -1,4 +1,13 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Post } from '@nestjs/common';
+import { UrlService } from './url.service';
+import * as crypto from 'crypto';
 
-@Controller('url')
-export class UrlController {}
+@Controller()
+export class UrlController {
+  constructor(private urlService: UrlService) {}
+
+  @Post()
+  async createNewShortenUrl() {
+    return this.urlService.createNewShortenUrl('hello');
+  }
+}
